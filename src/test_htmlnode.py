@@ -23,13 +23,15 @@ class TestHTMLNode(unittest.TestCase):
 
     def test_props_to_html_single(self):
         node = HTMLNode("p", "text", None, {"class": "text-bold"})
-        self.assertEqual(node.props_to_html(), 'class="text-bold" ')
+        self.assertEqual(node.props_to_html(), 'class="text-bold"')
 
     def test_props_to_html_multiple(self):
         node = HTMLNode("p", "text", None, {"class": "text-bold", "id": "para1"})
         props_html = node.props_to_html()
         self.assertTrue('class="text-bold"' in props_html)
         self.assertTrue('id="para1"' in props_html)
+        # Check that properties are separated by exactly one space
+        self.assertEqual(len(props_html.split()), 2)
 
     # def test_repr_no_children(self):
     #     node = HTMLNode("p", "Hello", None, {"class": "greeting"})

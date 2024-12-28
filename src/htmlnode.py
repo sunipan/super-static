@@ -12,9 +12,19 @@ class HTMLNode:
 
   def props_to_html(self):
     props_string = ""
+    if self.props == None:
+      return props_string
+
+    length = len(self.props)
+    counter = 0
     for key, value in self.props.items():
-      props_string += f'{key}="{value}" '
+      props_string += f'{key}="{value}"'
+      counter += 1
+      if counter < length:
+        props_string += " "
+
     return props_string
+    pass
 
   def __repr__(self):
     node_string = ""
@@ -26,3 +36,4 @@ class HTMLNode:
         node_string += f'{child.to_html()}'
     node_string += f'</{self.tag}>'
     return node_string
+    pass
