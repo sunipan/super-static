@@ -8,7 +8,7 @@ class LeafNode(HTMLNode):
 
     def to_html(self):
         if self.props is None:
-            props_str = " "
+            props_str = ""
         else:
             props_str = " " + self.props_to_html() + ""
             

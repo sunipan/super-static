@@ -27,8 +27,11 @@ class HTMLNode:
     pass
 
   def __repr__(self):
-    node_string = ""
-    node_string += f'<{self.tag} {self.props_to_html()}>'
+    node_string = f'<{self.tag}'
+    if self.props != None:
+      node_string += f' {self.props_to_html()}'
+    node_string += '>'
+    
     if self.value:
       node_string += f'{self.value}'
     if self.children:

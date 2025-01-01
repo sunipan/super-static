@@ -34,15 +34,13 @@ class TestLeafNode(unittest.TestCase):
 
     def test_to_html_simple(self):
         node = LeafNode(tag="p", value="Hello, World!")
-        expected = "<p >Hello, World!</p>"
+        expected = "<p>Hello, World!</p>"
         self.assertEqual(node.to_html(), expected)
 
     def test_to_html_with_props(self):
         props = {"class": "text-bold", "id": "greeting"}
         node = LeafNode(value="Hello", tag="div", props=props)
         expected = '<div class="text-bold" id="greeting">Hello</div>'
-        print("penis")
-        print(node.to_html())
         self.assertEqual(node.to_html(), expected)
 
 if __name__ == "__main__":
