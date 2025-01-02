@@ -20,7 +20,29 @@ def text_node_to_html_node(text_node):
     raise Exception(f"Invalid TextNode type: {text_node.text_type}")
 
 def split_nodes_delimiter(old_nodes, delimiter, text_type):
-  raise NotImplementedError
+  split_nodes = []
+  for node in old_nodes:
+    if node.text_type != TextType.TEXT:
+      split_nodes.append(node)
+      continue
+    
+    delim_count = 0
+    for char in node.text:
+      if char == delimiter:
+        delim_count += 1
+    
+    # Check for missing closing delimiter
+    if delim_count % 2 != 0:
+      raise Exception(f"Missing closing delimiter '{delimiter}'")
+    
+    split_text = node.text.split(delimiter)
 
-
-
+    for i, split in enumerate(split_text):
+      if split == '':
+        continue
+      if i % 2 == 0:
+        split_nodes.append(TextNode(split, TextType.TEXT))
+      else:
+        split_nodes.append(TextNode(split, text_type))
+        
+  return split_nodes
